@@ -26,7 +26,7 @@ export const getLeads = asyncHandler(async (req: AuthRequest, res: Response) => 
 
 export const getLead = asyncHandler(async (req: AuthRequest, res: Response) => {
   const lead = await leadService.getLeadById(
-    req.params.id,
+    req.params.id as string,
     req.user!.id,
     req.user!.role
   );
@@ -35,7 +35,7 @@ export const getLead = asyncHandler(async (req: AuthRequest, res: Response) => {
 
 export const updateLead = asyncHandler(async (req: AuthRequest, res: Response) => {
   const lead = await leadService.updateLead(
-    req.params.id,
+    req.params.id as string,
     req.body,
     req.user!.id,
     req.user!.role
@@ -44,7 +44,7 @@ export const updateLead = asyncHandler(async (req: AuthRequest, res: Response) =
 });
 
 export const deleteLead = asyncHandler(async (req: AuthRequest, res: Response) => {
-  await leadService.deleteLead(req.params.id, req.user!.id, req.user!.role);
+  await leadService.deleteLead(req.params.id as string, req.user!.id, req.user!.role);
   sendSuccess(res, 'Lead deleted');
 });
 
