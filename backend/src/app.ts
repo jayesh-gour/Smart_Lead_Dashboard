@@ -3,7 +3,6 @@ import cors from 'cors';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import swaggerUi from 'swagger-ui-express';
-import { env } from './config/env';
 import { swaggerSpec } from './config/swagger';
 import authRoutes from './routes/auth.routes';
 import leadRoutes from './routes/lead.routes';
