@@ -17,7 +17,15 @@ const ApiError_1 = require("./utils/ApiError");
 const app = (0, express_1.default)();
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)({
-    origin: env_1.env.CLIENT_URL,
+    origin: (origin, callback) => {
+        const allowed = env_1.env.CLIENT_URL.split(',').map(u => u.trim());
+        if (!origin || allowed.includes(origin)) {
+            callback(null, true);
+        }
+        else {
+            callback(new Error('Not allowed by CORS'));
+        }
+    },
     credentials: true,
 }));
 app.use(express_1.default.json({ limit: '10kb' }));
